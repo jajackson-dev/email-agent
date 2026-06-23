@@ -505,6 +505,109 @@
 
   .cta-note { font-size: 12px; color: var(--text-muted); }
 
+  /* CTA FORMS (demo / contact) */
+  .cta-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 980px;
+    margin: 0 auto;
+    text-align: left;
+    align-items: start;
+  }
+
+  .cta-copy { padding-top: 8px; }
+  .cta-copy .cta-note { margin-top: 1.5rem; }
+
+  .form-card {
+    background: var(--white);
+    border: 1px solid var(--cream-300);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: 0 4px 24px rgba(26,46,31,0.06);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-field { margin-bottom: 18px; text-align: left; }
+
+  .form-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-mid);
+    margin-bottom: 6px;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--cream-300);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-field input:focus,
+  .form-field textarea:focus { border-color: var(--green-400); }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder { color: var(--text-muted); }
+  .form-field textarea { resize: vertical; min-height: 90px; }
+
+  button.btn-primary, button.btn-secondary {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  button.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .btn-block { width: 100%; display: block; margin-top: 4px; }
+
+  .form-error {
+    display: none;
+    font-size: 13px;
+    color: #b34444;
+    margin-top: 12px;
+    text-align: center;
+  }
+
+  .form-success { display: none; text-align: center; }
+
+  .form-success-icon {
+    width: 48px; height: 48px;
+    background: var(--green-50);
+    border: 1px solid var(--green-200);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 22px;
+    color: var(--green-700);
+  }
+
+  .form-success h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--green-900);
+    margin-bottom: 8px;
+  }
+
+  .form-success p { font-size: 14px; color: var(--text-mid); }
+
+  /* WAITLIST */
+  .waitlist-section { padding: 60px 2rem; text-align: center; }
+  .waitlist-section .cta-inner { max-width: 480px; }
+  .form-success-inline p { font-size: 14px; color: var(--green-700); font-weight: 500; }
+
   /* FOOTER */
   footer {
     padding: 40px 2rem;
@@ -546,6 +649,12 @@
     .mockup-inner { grid-template-columns: 1fr; }
     .mockup-sidebar { display: none; }
     nav .nav-links { display: none; }
+  }
+
+  @media (max-width: 760px) {
+    .cta-split { grid-template-columns: 1fr; text-align: center; }
+    .cta-copy { text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -720,17 +829,127 @@
   </div>
 </section>
 
-<!-- CTA -->
+<!-- CTA: DEMO -->
 <section class="cta-section" id="demo">
-  <div class="cta-inner">
-    <span class="eyebrow">Get early access</span>
-    <h2>See OpsThreads<br>in action.</h2>
-    <p>Book a 20-minute demo and we'll show you how OpsThreads can work for your business — or join the waitlist if you're not quite ready.</p>
-    <div id="waitlist" class="cta-input-row">
-      <input type="email" placeholder="your@email.com" />
-      <a href="#" class="btn-primary">Join waitlist</a>
+  <div class="cta-split">
+    <div class="cta-copy">
+      <span class="eyebrow">Get early access</span>
+      <h2>See OpsThreads<br>in action.</h2>
+      <p>Book a 20-minute demo and we'll show you how OpsThreads can work for your business.</p>
+      <p class="cta-note">Or <a href="mailto:hello@opsthreads.com" style="color: var(--green-700); text-decoration: none;">email us</a> directly. No sales pressure.</p>
     </div>
-    <p class="cta-note">Or <a href="mailto:hello@opsthreads.com" style="color: var(--green-700); text-decoration: none;">email us</a> to book a demo directly. No sales pressure.</p>
+    <div class="form-card">
+      <div id="demo-form-wrap">
+        <form name="demo-booking" data-netlify="true" netlify-honeypot="bot-field" id="demo-form" novalidate>
+          <input type="hidden" name="form-name" value="demo-booking">
+          <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="demo-name">Full Name *</label>
+              <input type="text" id="demo-name" name="name" required autocomplete="name" placeholder="Jane Smith">
+            </div>
+            <div class="form-field">
+              <label for="demo-email">Email Address *</label>
+              <input type="email" id="demo-email" name="email" required autocomplete="email" placeholder="jane@example.com">
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="demo-company">Company / Organization</label>
+            <input type="text" id="demo-company" name="company" placeholder="Acme Inc.">
+          </div>
+
+          <div class="form-field">
+            <label for="demo-preferred-date">Preferred Date &amp; Time *</label>
+            <input type="datetime-local" id="demo-preferred-date" name="preferred-date" required>
+          </div>
+
+          <div class="form-field">
+            <label for="demo-message">Anything you'd like us to know?</label>
+            <textarea id="demo-message" name="message" placeholder="What are you hoping to see in the demo?"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary btn-block" id="demo-submit-btn">Book My Demo</button>
+          <p class="form-error" id="demo-error-msg">Something went wrong. Please try again.</p>
+        </form>
+      </div>
+      <div class="form-success" id="demo-success">
+        <div class="form-success-icon">✓</div>
+        <h3>You're booked!</h3>
+        <p>Check your inbox for a confirmation email — we'll follow up with a calendar invite shortly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="waitlist-section" id="waitlist">
+  <div class="cta-inner">
+    <span class="eyebrow">Not ready yet?</span>
+    <h2>Join the waitlist.</h2>
+    <p>We'll let you know the moment OpsThreads is ready for you.</p>
+    <div id="wishlist-form-wrap">
+      <form name="wishlist" data-netlify="true" netlify-honeypot="bot-field" id="wishlist-form" class="cta-input-row" novalidate>
+        <input type="hidden" name="form-name" value="wishlist">
+        <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+        <input type="text" id="wishlist-name" name="name" required autocomplete="given-name" placeholder="First name">
+        <input type="email" id="wishlist-email" name="email" required autocomplete="email" placeholder="your@email.com">
+        <button type="submit" class="btn-primary" id="wishlist-submit-btn">Join waitlist</button>
+      </form>
+      <p class="form-error" id="wishlist-error-msg">Something went wrong. Please try again.</p>
+    </div>
+    <div class="form-success form-success-inline" id="wishlist-success">
+      <p>🎉 You're on the list! Check your inbox for confirmation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="cta-section" id="contact">
+  <div class="cta-split">
+    <div class="cta-copy">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Questions?<br>We're here to help.</h2>
+      <p>Send us a message and we'll get back to you within 1–2 business days.</p>
+    </div>
+    <div class="form-card">
+      <div id="contact-form-wrap">
+        <form name="contact" data-netlify="true" netlify-honeypot="bot-field" id="contact-form" novalidate>
+          <input type="hidden" name="form-name" value="contact">
+          <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="contact-name">Full Name *</label>
+              <input type="text" id="contact-name" name="name" required autocomplete="name" placeholder="Jane Smith">
+            </div>
+            <div class="form-field">
+              <label for="contact-email">Email Address *</label>
+              <input type="email" id="contact-email" name="email" required autocomplete="email" placeholder="jane@example.com">
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="contact-subject">Subject *</label>
+            <input type="text" id="contact-subject" name="subject" required placeholder="What's this about?">
+          </div>
+
+          <div class="form-field">
+            <label for="contact-message">Message *</label>
+            <textarea id="contact-message" name="message" required placeholder="Tell us what's on your mind…"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary btn-block" id="contact-submit-btn">Send Message</button>
+          <p class="form-error" id="contact-error-msg">Something went wrong. Please try again.</p>
+        </form>
+      </div>
+      <div class="form-success" id="contact-success">
+        <div class="form-success-icon">✓</div>
+        <h3>Message received!</h3>
+        <p>We've sent a confirmation to your email and will be in touch soon.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -738,13 +957,50 @@
 <footer>
   <a href="#" class="footer-logo">OpsThreads</a>
   <ul class="footer-links">
-    <li><a href="#">Features</a></li>
-    <li><a href="#">How it works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How it works</a></li>
     <li><a href="#">Privacy</a></li>
-    <li><a href="#">Contact</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
   <span class="footer-copy">© 2026 OpsThreads</span>
 </footer>
+
+<script>
+  const wireForm = ({ formId, wrapId, successId, errorId, busyText, idleText }) => {
+    const form = document.getElementById(formId);
+    const btn = form.querySelector('button[type="submit"]');
+    const errorMsg = document.getElementById(errorId);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      btn.disabled = true;
+      btn.textContent = busyText;
+      errorMsg.style.display = 'none';
+
+      try {
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(form)).toString(),
+        });
+
+        if (!res.ok) throw new Error();
+        document.getElementById(wrapId).style.display = 'none';
+        document.getElementById(successId).style.display = 'block';
+      } catch {
+        btn.disabled = false;
+        btn.textContent = idleText;
+        errorMsg.style.display = 'block';
+      }
+    });
+  };
+
+  wireForm({ formId: 'demo-form', wrapId: 'demo-form-wrap', successId: 'demo-success', errorId: 'demo-error-msg', busyText: 'Booking…', idleText: 'Book My Demo' });
+  wireForm({ formId: 'wishlist-form', wrapId: 'wishlist-form-wrap', successId: 'wishlist-success', errorId: 'wishlist-error-msg', busyText: 'Joining…', idleText: 'Join waitlist' });
+  wireForm({ formId: 'contact-form', wrapId: 'contact-form-wrap', successId: 'contact-success', errorId: 'contact-error-msg', busyText: 'Sending…', idleText: 'Send Message' });
+</script>
 
 </body>
 </html>
