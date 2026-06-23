@@ -1,0 +1,25 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# ── Form submission webhook notifications ──────────────────────────────────────
+# Netlify does not support configuring outgoing form webhooks in netlify.toml.
+# After deploying, set these up in the Netlify dashboard:
+#
+#   Site Settings → Forms → Form notifications → Add notification → Outgoing webhook
+#
+# Add one webhook per form, all pointing to the same URL:
+#   https://<your-site>.netlify.app/.netlify/functions/email-agent
+#
+# Forms to configure:  demo-booking  |  wishlist  |  contact
+# ──────────────────────────────────────────────────────────────────────────────
+
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type"
