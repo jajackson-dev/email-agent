@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OpsThreads — AI-Powered SOP Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-900: #1a2e1f;
+    --green-800: #234029;
+    --green-700: #2e5436;
+    --green-600: #3a6942;
+    --green-400: #5a9e65;
+    --green-200: #a8cead;
+    --green-100: #d4e8d6;
+    --green-50:  #eef6ef;
+    --cream-100: #faf7f0;
+    --cream-200: #f2ede0;
+    --cream-300: #e5ddc8;
+    --text-dark: #1a2e1f;
+    --text-mid:  #3a4f3d;
+    --text-muted: #6b7f6d;
+    --white: #ffffff;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream-100);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 247, 240, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--cream-300);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--green-800);
+    letter-spacing: -0.3px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-logo .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green-600);
+    display: inline-block;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--green-700); }
+
+  .btn-nav {
+    background: var(--green-800);
+    color: var(--white) !important;
+    padding: 8px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-nav:hover { background: var(--green-900) !important; }
+
+  /* HERO */
+  .hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 100px 2rem 80px;
+    text-align: center;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green-600);
+    background: var(--green-50);
+    border: 1px solid var(--green-200);
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(42px, 6vw, 70px);
+    line-height: 1.1;
+    color: var(--green-900);
+    letter-spacing: -1.5px;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--green-600);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--text-mid);
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.65;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .btn-primary {
+    background: var(--green-800);
+    color: var(--white);
+    padding: 14px 28px;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--green-900); transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--green-800);
+    padding: 14px 28px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--green-400);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover { border-color: var(--green-700); background: var(--green-50); transform: translateY(-1px); }
+
+  .hero-note {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* MOCKUP */
+  .mockup-wrap {
+    max-width: 860px;
+    margin: 0 auto 80px;
+    padding: 0 2rem;
+  }
+
+  .mockup-shell {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--cream-300);
+    overflow: hidden;
+    box-shadow: 0 4px 40px rgba(26,46,31,0.08), 0 1px 3px rgba(26,46,31,0.06);
+  }
+
+  .mockup-bar {
+    background: var(--cream-200);
+    border-bottom: 1px solid var(--cream-300);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dot-r { width: 11px; height: 11px; border-radius: 50%; background: #f4b8b8; }
+  .dot-y { width: 11px; height: 11px; border-radius: 50%; background: #f4dcb8; }
+  .dot-g { width: 11px; height: 11px; border-radius: 50%; background: #b8d9b8; }
+
+  .mockup-bar-url {
+    flex: 1;
+    background: var(--white);
+    border-radius: 4px;
+    height: 26px;
+    margin: 0 12px;
+    border: 1px solid var(--cream-300);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'Inter', monospace;
+  }
+
+  .mockup-inner {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 380px;
+  }
+
+  .mockup-sidebar {
+    background: var(--green-900);
+    padding: 20px 16px;
+  }
+
+  .mockup-sidebar-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green-400);
+    margin-bottom: 12px;
+  }
+
+  .mockup-sop-item {
+    background: rgba(255,255,255,0.06);
+    border-radius: 6px;
+    padding: 9px 12px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mockup-sop-item.active { background: rgba(255,255,255,0.14); }
+
+  .sop-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    background: var(--green-700);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sop-icon svg { width: 13px; height: 13px; stroke: var(--green-200); stroke-width: 2; fill: none; }
+
+  .sop-text { font-size: 12px; color: var(--green-100); line-height: 1.3; }
+  .sop-text span { display: block; font-size: 10px; color: var(--green-400); margin-top: 2px; }
+
+  .mockup-main {
+    padding: 24px 28px;
+  }
+
+  .mockup-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .mockup-title { font-size: 16px; font-weight: 600; color: var(--text-dark); }
+  .mockup-meta { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+
+  .ai-badge {
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--green-50);
+    color: var(--green-700);
+    border: 1px solid var(--green-200);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  .step-list { list-style: none; }
+
+  .step-item {
+    display: flex;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--cream-200);
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--green-100);
+    color: var(--green-800);
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-content { font-size: 13px; color: var(--text-mid); line-height: 1.5; }
+  .step-content strong { color: var(--text-dark); font-weight: 500; }
+
+  .ai-suggestion {
+    margin-top: 16px;
+    background: var(--green-50);
+    border: 1px solid var(--green-100);
+    border-left: 3px solid var(--green-500, var(--green-600));
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 12px 14px;
+    font-size: 12px;
+    color: var(--green-800);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .ai-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-600); flex-shrink: 0; margin-top: 5px; }
+
+  /* FEATURES */
+  .section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 2rem;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green-600);
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.15;
+    color: var(--green-900);
+    letter-spacing: -0.8px;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 17px;
+    color: var(--text-mid);
+    max-width: 520px;
+    margin-bottom: 3rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    background: var(--white);
+    border: 1px solid var(--cream-300);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .feature-card:hover {
+    border-color: var(--green-200);
+    box-shadow: 0 4px 20px rgba(26,46,31,0.07);
+  }
+
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--green-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .feature-icon svg { width: 20px; height: 20px; stroke: var(--green-700); stroke-width: 1.8; fill: none; }
+
+  .feature-title { font-size: 15px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; }
+  .feature-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+  /* HOW IT WORKS */
+  .how-section {
+    background: var(--green-900);
+    padding: 80px 2rem;
+  }
+
+  .how-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .how-section .section-label { color: var(--green-400); }
+  .how-section h2 { color: var(--white); }
+  .how-section .section-sub { color: var(--green-200); }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
+  .step-card {
+    background: var(--green-900);
+    padding: 32px 28px;
+  }
+
+  .step-num-large {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    color: var(--green-700);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .step-card-title { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+  .step-card-desc { font-size: 14px; color: var(--green-300, var(--green-200)); line-height: 1.65; }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: var(--cream-200);
+    border-top: 1px solid var(--cream-300);
+    border-bottom: 1px solid var(--cream-300);
+    padding: 80px 2rem;
+    text-align: center;
+  }
+
+  .cta-inner { max-width: 600px; margin: 0 auto; }
+
+  .cta-section h2 { margin-bottom: 1rem; }
+
+  .cta-section p {
+    font-size: 17px;
+    color: var(--text-mid);
+    margin-bottom: 2.5rem;
+  }
+
+  .cta-input-row {
+    display: flex;
+    gap: 10px;
+    max-width: 440px;
+    margin: 0 auto 14px;
+    flex-wrap: wrap;
+  }
+
+  .cta-input-row input {
+    flex: 1;
+    min-width: 200px;
+    padding: 13px 16px;
+    border: 1.5px solid var(--cream-300);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .cta-input-row input:focus { border-color: var(--green-400); }
+  .cta-input-row input::placeholder { color: var(--text-muted); }
+
+  .cta-note { font-size: 12px; color: var(--text-muted); }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--green-800);
+    text-decoration: none;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--green-700); }
+
+  .footer-copy { font-size: 12px; color: var(--text-muted); }
+
+  @media (max-width: 640px) {
+    .mockup-inner { grid-template-columns: 1fr; }
+    .mockup-sidebar { display: none; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="dot"></span>OpsThreads
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#demo" class="btn-nav">Book a demo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="eyebrow">AI-powered SOP management</span>
+  <h1>Your SOPs,<br><em>finally organized.</em></h1>
+  <p class="hero-sub">OpsThreads uses AI to connect and organize your standard operating procedures — so your team always knows what to do, and how to do it right.</p>
+  <div class="hero-cta">
+    <a href="#demo" class="btn-primary">Book a demo</a>
+    <a href="#waitlist" class="btn-secondary">Join the waitlist</a>
+  </div>
+  <p class="hero-note">Built for small businesses. No IT department required.</p>
+</section>
+
+<!-- PRODUCT MOCKUP -->
+<div class="mockup-wrap">
+  <div class="mockup-shell">
+    <div class="mockup-bar">
+      <div class="dot-r"></div>
+      <div class="dot-y"></div>
+      <div class="dot-g"></div>
+      <div class="mockup-bar-url">app.opsthreads.com / sops / onboarding</div>
+    </div>
+    <div class="mockup-inner">
+      <div class="mockup-sidebar">
+        <div class="mockup-sidebar-label">Your SOPs</div>
+        <div class="mockup-sop-item active">
+          <div class="sop-icon">
+            <svg viewBox="0 0 16 16"><path d="M2 4h12M2 8h8M2 12h6"/></svg>
+          </div>
+          <div class="sop-text">Employee Onboarding <span>Updated 2d ago</span></div>
+        </div>
+        <div class="mockup-sop-item">
+          <div class="sop-icon">
+            <svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M5 5h3"/></svg>
+          </div>
+          <div class="sop-text">Invoice Processing <span>Updated 5d ago</span></div>
+        </div>
+        <div class="mockup-sop-item">
+          <div class="sop-icon">
+            <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/><path d="M8 5v3l2 2"/></svg>
+          </div>
+          <div class="sop-text">Customer Escalation <span>Updated 1w ago</span></div>
+        </div>
+        <div class="mockup-sop-item">
+          <div class="sop-icon">
+            <svg viewBox="0 0 16 16"><path d="M3 3h10v10H3zM6 3v10M3 6h10"/></svg>
+          </div>
+          <div class="sop-text">Inventory Reorder <span>Updated 2w ago</span></div>
+        </div>
+      </div>
+      <div class="mockup-main">
+        <div class="mockup-header">
+          <div>
+            <div class="mockup-title">Employee Onboarding</div>
+            <div class="mockup-meta">Operations · 8 steps · Last edited by Sarah K.</div>
+          </div>
+          <span class="ai-badge">✦ AI reviewed</span>
+        </div>
+        <ul class="step-list">
+          <li class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content"><strong>Send welcome email</strong> using the HR template within 24 hours of offer acceptance.</div>
+          </li>
+          <li class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content"><strong>Set up accounts</strong> in Slack, Google Workspace, and your project management tool before day one.</div>
+          </li>
+          <li class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content"><strong>Assign an onboarding buddy</strong> from the same team to support the new hire's first two weeks.</div>
+          </li>
+        </ul>
+        <div class="ai-suggestion">
+          <div class="ai-dot"></div>
+          <div><strong>AI suggestion:</strong> Step 2 and Step 3 are often completed out of order — consider swapping them to match how your team actually works.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-label">What OpsThreads does</div>
+  <h2>Built for the way small<br>businesses actually run.</h2>
+  <p class="section-sub">No consultants. No 200-page manuals. Just clear, living SOPs your whole team can follow.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div class="feature-title">AI organizes your SOPs</div>
+      <div class="feature-desc">Paste in your existing docs, voice notes, or rough instructions — OpsThreads structures them into clear, step-by-step procedures automatically.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M5 7h14M5 12h6M5 17h4"/></svg>
+      </div>
+      <div class="feature-title">Always up to date</div>
+      <div class="feature-desc">SOPs drift out of date fast. OpsThreads flags outdated steps and suggests revisions based on how your team actually works.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4"/><path d="M16 11l2 2 4-4"/></svg>
+      </div>
+      <div class="feature-title">Your whole team on the same page</div>
+      <div class="feature-desc">Give every employee one place to find the right process — whether they're in the office, remote, or brand new to the role.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="feature-title">Ask questions, get answers</div>
+      <div class="feature-desc">Employees can ask "how do I process a refund?" and get the exact SOP steps — no digging through folders or pinging managers.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <div class="feature-title">Organized by department</div>
+      <div class="feature-desc">Group SOPs by team, process type, or priority — so Operations, HR, and Finance each have their own clean section.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="feature-title">Version history built in</div>
+      <div class="feature-desc">Every change is tracked. Roll back to a previous version any time, or see exactly who changed what and when.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="how-inner">
+    <div class="section-label">How it works</div>
+    <h2>From chaos to clarity<br>in three steps.</h2>
+    <p class="section-sub">You don't need to start from scratch. OpsThreads meets you where you are.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num-large">01</div>
+        <div class="step-card-title">Import what you have</div>
+        <div class="step-card-desc">Drop in Word docs, Google Docs, PDFs, or just type out what you do. OpsThreads reads it all.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num-large">02</div>
+        <div class="step-card-title">AI structures & refines</div>
+        <div class="step-card-desc">OpsThreads turns raw content into clean, numbered procedures — and flags anything that's missing or unclear.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num-large">03</div>
+        <div class="step-card-title">Your team follows with confidence</div>
+        <div class="step-card-desc">Everyone on your team gets one source of truth — searchable, shareable, and always current.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="demo">
+  <div class="cta-inner">
+    <span class="eyebrow">Get early access</span>
+    <h2>See OpsThreads<br>in action.</h2>
+    <p>Book a 20-minute demo and we'll show you how OpsThreads can work for your business — or join the waitlist if you're not quite ready.</p>
+    <div id="waitlist" class="cta-input-row">
+      <input type="email" placeholder="your@email.com" />
+      <a href="#" class="btn-primary">Join waitlist</a>
+    </div>
+    <p class="cta-note">Or <a href="mailto:hello@opsthreads.com" style="color: var(--green-700); text-decoration: none;">email us</a> to book a demo directly. No sales pressure.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">OpsThreads</a>
+  <ul class="footer-links">
+    <li><a href="#">Features</a></li>
+    <li><a href="#">How it works</a></li>
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 OpsThreads</span>
+</footer>
+
+</body>
+</html>
