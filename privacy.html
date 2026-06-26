@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy Policy — OpsThreads</title>
+<meta name="description" content="OpsThreads Privacy Policy — how we collect, use, and protect your personal information." />
+<link rel="canonical" href="https://opsthreads.com/privacy" />
+<meta name="robots" content="noindex, follow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-900: #1a2e1f;
+    --green-800: #234029;
+    --green-700: #2e5436;
+    --green-600: #3a6942;
+    --green-400: #5a9e65;
+    --green-200: #a8cead;
+    --green-100: #d4e8d6;
+    --green-50:  #eef6ef;
+    --cream-100: #faf7f0;
+    --cream-200: #f2ede0;
+    --cream-300: #e5ddc8;
+    --text-dark: #1a2e1f;
+    --text-mid:  #3a4f3d;
+    --text-muted: #6b7f6d;
+    --white: #ffffff;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream-100);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .skip-nav {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: var(--green-800);
+    color: var(--white);
+    padding: 8px 16px;
+    z-index: 200;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .skip-nav:focus { top: 0; }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 247, 240, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--cream-300);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--green-800);
+    letter-spacing: -0.3px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-logo .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green-600);
+    display: inline-block;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--green-700); }
+
+  .btn-nav {
+    background: var(--green-800);
+    color: var(--white) !important;
+    padding: 8px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-nav:hover { background: var(--green-900) !important; }
+
+  main {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 80px 2rem 100px;
+  }
+
+  .page-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green-600);
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.1;
+    color: var(--green-900);
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+  }
+
+  .last-updated {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--green-900);
+    margin: 2.5rem 0 0.75rem;
+  }
+
+  p { margin-bottom: 1rem; color: var(--text-mid); }
+
+  ul {
+    margin: 0.5rem 0 1rem 1.5rem;
+    color: var(--text-mid);
+  }
+
+  ul li { margin-bottom: 0.4rem; }
+
+  a { color: var(--green-700); }
+  a:hover { color: var(--green-900); }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--cream-300);
+    margin: 2.5rem 0;
+  }
+
+  footer {
+    padding: 40px 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-width: 960px;
+    margin: 0 auto;
+    border-top: 1px solid var(--cream-300);
+  }
+
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--green-800);
+    text-decoration: none;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--green-700); }
+  .footer-copy { font-size: 12px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <span class="dot" aria-hidden="true"></span>OpsThreads
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#features">Features</a></li>
+    <li><a href="/#how">How it works</a></li>
+    <li><a href="/#demo" class="btn-nav">Book a demo</a></li>
+  </ul>
+</nav>
+
+<main id="main-content">
+  <p class="page-label">Legal</p>
+  <h1>Privacy Policy</h1>
+  <p class="last-updated">Last updated: June 26, 2026</p>
+
+  <p>OpsThreads ("we", "us", or "our") is committed to protecting your privacy. This Privacy Policy explains what personal information we collect, how we use it, and your rights regarding that information.</p>
+
+  <h2>1. Information We Collect</h2>
+  <p>We collect information you provide directly to us through the forms on this site:</p>
+  <ul>
+    <li><strong>Demo requests:</strong> full name, email address, company or organization name, preferred demo date and time, and any optional message you provide.</li>
+    <li><strong>Waitlist sign-ups:</strong> first name and email address.</li>
+    <li><strong>Contact form submissions:</strong> full name, email address, subject, and message.</li>
+  </ul>
+  <p>We do not collect payment information, track your browsing across other websites, or use third-party advertising trackers.</p>
+
+  <h2>2. How We Use Your Information</h2>
+  <p>We use the information you provide to:</p>
+  <ul>
+    <li>Respond to your demo requests and schedule meetings.</li>
+    <li>Notify you when OpsThreads is available (waitlist).</li>
+    <li>Reply to your support or general enquiries.</li>
+    <li>Send you relevant product updates if you have opted in.</li>
+  </ul>
+  <p>We will never sell your personal information to third parties.</p>
+
+  <h2>3. Data Storage and Processors</h2>
+  <p>Form submissions are processed and stored by <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer">Netlify</a>, our hosting provider. Email notifications generated from your submissions are sent via transactional email services. By submitting a form on this site, you acknowledge that your data may be processed by these sub-processors in accordance with their privacy policies.</p>
+
+  <h2>4. Data Retention</h2>
+  <p>We retain your personal information for as long as necessary to fulfill the purpose for which it was collected (e.g., to follow up on a demo request or waitlist notification) or as required by law. You may request deletion at any time — see Section 6.</p>
+
+  <h2>5. Cookies</h2>
+  <p>This site does not currently use analytics cookies or third-party tracking cookies. Our hosting provider (Netlify) may set cookies necessary for site functionality and security. If we introduce analytics in the future, we will update this policy and obtain appropriate consent where required.</p>
+
+  <h2>6. Your Rights</h2>
+  <p>Depending on your location, you may have rights under applicable data protection law (including GDPR and CCPA), such as the right to:</p>
+  <ul>
+    <li>Access the personal information we hold about you.</li>
+    <li>Correct inaccurate information.</li>
+    <li>Request deletion of your data ("right to be forgotten").</li>
+    <li>Object to or restrict our processing of your data.</li>
+    <li>Withdraw consent at any time (where processing is based on consent).</li>
+  </ul>
+  <p>To exercise any of these rights, please contact us at <a href="mailto:hello@opsthreads.com">hello@opsthreads.com</a>. We will respond within 30 days.</p>
+
+  <h2>7. Children's Privacy</h2>
+  <p>OpsThreads is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has submitted information to us, please contact us and we will delete it promptly.</p>
+
+  <h2>8. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. When we do, we will revise the "last updated" date at the top of this page. We encourage you to review this page periodically.</p>
+
+  <h2>9. Contact Us</h2>
+  <p>If you have any questions about this Privacy Policy or how we handle your personal information, please reach out:</p>
+  <ul>
+    <li>Email: <a href="mailto:hello@opsthreads.com">hello@opsthreads.com</a></li>
+  </ul>
+</main>
+
+<footer>
+  <a href="/" class="footer-logo">OpsThreads</a>
+  <ul class="footer-links">
+    <li><a href="/#features">Features</a></li>
+    <li><a href="/#how">How it works</a></li>
+    <li><a href="/privacy" aria-current="page">Privacy</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 OpsThreads</span>
+</footer>
+
+</body>
+</html>
